@@ -3,12 +3,13 @@ var topics = [];
 function horrorMovieGif() {
 
   var title = $(this).attr("data-search");
-
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=A9wDVM3lKqUEjnnlYAa7ZgfpVWLSSaMu&q=" + title + "&limit=10";
 
   $.ajax({
+
     url: queryURL,
     method: "GET"
+
   }).then(function(response) {
     console.log(response);
 
@@ -18,36 +19,45 @@ function horrorMovieGif() {
       var gifDiv = $("<div>");
       var movieImage = $("<img>");
       var rating = result[i].rating;
+      var p = $("<p>").text("Rating: " + rating);
 
       movieImage.addClass("scaryGif")
       movieImage.attr("src", result[i].images.fixed_height.url);
       movieImage.attr("src", result[i].images.fixed_height_still.url);
-      
+      movieImage.attr("data-still", "still");
+
+      gifDiv.append(movieImage);
+      gifDiv.append(p);
+
+      $("#horrorGifs").prepend(gifDiv);
 
     }
-
   });
-
 }
 
+$("#addMovie").on("click", function(event) {
+  event.preventDefault()
 
-    
+  var newMovie = $("#buttonInsert").val().trim();
+  topics.push(newMovie);
+  $("#buttonInsert").val("");
 
-    function makeGifs(response) {
-        // create a for loop with a .length
-        // make a div to hold the gif
-        var gifDiv = $("<div>");
-        // make and image tag that holds the gif
-        // set href on the image to still URL
-        // set still attribute on image stores still URL
-        // set and animate attribute on image to the animated URL
-        // state attribute to still
-        // possible alt text to name of picture
-        // append the image to div
-        // create a p tag to hold a rating
-        // append p tag to the div
-        // prepend div to page
-    }
+  showButtons()
+
+})
+
+function button() {
+
+  $("#horrorButtons").empty();
+  for (var i =0; i < topics.length; i++) {
+
+    var newButton = $("<button class='btn btn-primary'>");
+    newButton.attr("id", "movie")
+
+
+  }
+}
+
 
 
 
