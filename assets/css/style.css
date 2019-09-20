@@ -1,7 +1,29 @@
+body {
+    width: 80%;
+    background-image: url(../images/Forest.jpg)
+}
+
 #movie {
     margin: 20px 10px 0;
+    background-color: maroon;
+    border: black;
 }
 
 .container {
     text-align: center; 
+}
+
+#intro {
+    background-color: rgb(3, 3, 3, .4);
+    color: white;
+}
+
+#addMovie {
+    background-color: black;
+    color: white;
+    border: maroon;
+}
+
+#horrorGifs {
+    margin-top: 70px;
 }

@@ -52,22 +52,23 @@ $(document).ready(function() {
     var topics = [];
     $("#addMovie").on("click", function(event) {
       event.preventDefault();
-      var newMovie = $("#input1").val().trim();
+      var newMovie = $("#buttonInsert").val().trim();
       console.log(newMovie);
       topics.push(newMovie);
     
-      $("#buttonInsert").val(topics[i]);    
-      showButton();   
-          // $("#horrorButtons").empty();
+      $("#buttonInsert").val(topics[i]);      
+      $(".horrorButtons").empty();
     for (var i = 0; i < topics.length; i++) {
       
-      var newButton = $("<button class='btn btn-primary'>");
+      var newButton = $("<button>");
+      newButton.addClass("btn btn-primary");
       newButton.attr("id", "movie");
       newButton.attr("data-search", topics[i]);
       console.log(topics[i]);
       newButton.text(topics[i]);
-      $("#horrorButtons").append(newButton);
+      $(".horrorButtons").append(newButton);
       console.log(newButton);
+      console.log($(".horrorButtons"))
     };
     }); 
     
