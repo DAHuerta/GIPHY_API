@@ -27,3 +27,7 @@ body {
 #horrorGifs {
     margin-top: 70px;
 }
+
+.scaryGif {
+    border: maroon solid 4px;
+}

@@ -1,12 +1,11 @@
 $(document).ready(function() {
   showButton();
 
-  $(document).on("click", "#scaryGif", gifState);
+  $(document).on("click", ".scaryGif", gifState);
   $(document).on("click", "#movie", getData);
   
 });
-
-  
+ 
   function getData(){
 
       var title = $(this).attr("data-search");
@@ -25,7 +24,6 @@ $(document).ready(function() {
     }  
 
   function horrorMovieGif(response) {
-      console.log(response.data);
 
       var result = response.data;
       for (i = 0; i < result.length; i++) {
@@ -36,10 +34,11 @@ $(document).ready(function() {
         var p = $("<p>").text("Rating: " + rating);
       
         movieImage.addClass("scaryGif")
-        movieImage.attr("src", result[i].images.fixed_height.url);
         movieImage.attr("src", result[i].images.fixed_height_still.url);
-        movieImage.attr("data-still", "still");
-      
+        movieImage.attr("data-state", "still");
+        movieImage.attr("data-animate", result[i].images.fixed_height.url)
+        movieImage.attr("data-still", result[i].images.fixed_height_still.url)
+        
         gifDiv.append(movieImage);
         gifDiv.append(p);
       
@@ -53,23 +52,20 @@ $(document).ready(function() {
     $("#addMovie").on("click", function(event) {
       event.preventDefault();
       var newMovie = $("#buttonInsert").val().trim();
-      console.log(newMovie);
       topics.push(newMovie);
-    
       $("#buttonInsert").val(topics[i]);      
       $(".horrorButtons").empty();
-    for (var i = 0; i < topics.length; i++) {
-      
-      var newButton = $("<button>");
-      newButton.addClass("btn btn-primary");
-      newButton.attr("id", "movie");
-      newButton.attr("data-search", topics[i]);
-      console.log(topics[i]);
-      newButton.text(topics[i]);
-      $(".horrorButtons").append(newButton);
-      console.log(newButton);
-      console.log($(".horrorButtons"))
-    };
+
+      for (var i = 0; i < topics.length; i++) {
+        
+        var newButton = $("<button>");
+        newButton.addClass("btn btn-primary");
+        newButton.attr("id", "movie");
+        newButton.attr("data-search", topics[i]);
+        newButton.text(topics[i]);
+        $(".horrorButtons").append(newButton);
+
+      };
     }); 
     
 
@@ -78,15 +74,15 @@ $(document).ready(function() {
   function gifState() {
     
     var state = $(this).attr("data-state");
-    console.log(response.data.images.original)
+
     if (state === "still") {
-      
-      $(this).attr("src", $(this).attr("data."));
+
+      $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
       
     } else {
       
-      $(this).attr("src", $(this).attr("data-original-still"));
+      $(this).attr("src", $(this).attr("data-still"));
       $(this).attr("data-state", "still");
       
     };
