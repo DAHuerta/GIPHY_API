@@ -17,6 +17,8 @@ function horrorMovieGif() {
       
       var gifDiv = $("<div>");
       var movieImage = $("<img>");
+      var rating = result[i].rating;
+
       movieImage.addClass("scaryGif")
       movieImage.attr("src", result[i].images.fixed_height.url);
       movieImage.attr("src", result[i].images.fixed_height_still.url);
